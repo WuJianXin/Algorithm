@@ -1,6 +1,5 @@
 package kmp;
 
-import java.util.Arrays;
 
 public class KMP {
 	
@@ -22,8 +21,14 @@ public class KMP {
 		return array;
 	}
 	
-	private int get_index(String big,String small,int pos){
-		int i=pos;
+	/**
+	 * 返回第一个匹配的串的首字母下标，从0开始
+	 * @param big
+	 * @param small
+	 * @return
+	 */
+	private int get_index(String big,String small){
+		int i=0;
 		int j=-1;
 		Integer[] next = get_next(small);
 		while(i<big.length() && j<small.length()){
@@ -38,7 +43,7 @@ public class KMP {
 		if(j==small.length()){
 			return i-small.length();
 		}else{
-			return 0;
+			return -1;
 		}
 	}
 	
@@ -47,11 +52,11 @@ public class KMP {
 //		String s1="ababaaaba";  //[0, 0, 1, 1, 2, 3, 1, 1, 2]
 //		Integer[] array = kmp.get_next(s1); 
 //		System.out.println(Arrays.toString(array));  
-	
-		String big="aaababafcbabaaaba";
-		String small="cbabaaaba";
-		int index = kmp.get_index(big,small,7);
-		System.out.println(index);
+	    //            012345678 
+		String big=  "aaadbbbdcc";
+		String small=      "bdc";
+		int index = kmp.get_index(big,small);
+		System.out.println(index);          //6
 	}
 	
 }
